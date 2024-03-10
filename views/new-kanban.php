@@ -1,0 +1,1 @@
+This is the view for the new kanban form

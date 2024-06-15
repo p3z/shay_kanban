@@ -68,6 +68,26 @@ add_action( 'init', 'kanban_boards_post_type' );
 
 define("VIEWS_DIR", plugin_dir_path(__FILE__) . 'views/');
 
+/**
+ * Kanban structure
+ * 
+ * Board -> post type
+ *   -> Column
+ *      -> Tile 1 -> object
+ *          -> Title
+ *          -> Label (mite be color, or something else, left vague intentionally so more flexible)
+ *          -> Description
+ *          -> Tags []
+ *          -> Categories []
+ *          -> 
+ *      -> Tile 2
+ *      -> Tile 3
+ *      -> Tile etc
+ *   -> Column etc
+ *      -> Tile etc
+ *      -> Tile etc
+***/
+
 
 // Add admin menu for managing Kanban Boards
 function kanban_boards_menu() {

@@ -2,13 +2,22 @@
 /**
  * Plugin Name: Shay Kanban
  * Description: A simple plugin to manage Kanban boards in WordPress.
- * Version: 1.02
+ * Version: 1.03
  * Author: Shay Pottle
  */
 
 if (!defined('ABSPATH')) {
     wp_die( 'Do not open this file directly.' );
 }
+
+define("MAIN_PLUGIN_DIR", plugin_dir_path(__FILE__) );
+define("VIEWS_DIR", MAIN_PLUGIN_DIR . 'views/');
+
+if ( is_admin() ) {
+    require_once(VIEWS_DIR . 'enqueue_assets.php');
+}
+
+
 
 // Register Kanban Boards custom post type
 function kanban_boards_post_type() {
@@ -66,7 +75,8 @@ function kanban_boards_post_type() {
 add_action( 'init', 'kanban_boards_post_type' );
 
 
-define("VIEWS_DIR", plugin_dir_path(__FILE__) . 'views/');
+
+
 
 /**
  * Kanban structure
@@ -100,10 +110,10 @@ function kanban_boards_menu() {
         'kanban_boards_list_page', // Menu slug (unique identifier)
         'dashicons-admin-page' // Icon URL or Dashicon class for the menu icon
     );
-    add_submenu_page( 'kanban_boards_list', 'Add New Kanban Board', 'Add New', 'manage_options', 'kanban_boards_add_new', 'kanban_boards_add_new_page' );
-    add_submenu_page( 'kanban_boards_list', 'View settings', 'View settings', 'manage_options', 'kanban_boards_view_settings', 'kanban_boards_view_settings' );
+    add_submenu_page( 'kanban_boards_list', 'Add New Kanban Board', 'Add New', 'manage_options', 'skb_add_new_board', 'kanban_boards_add_new_page' );
+    add_submenu_page( 'kanban_boards_list', 'View settings', 'View settings', 'manage_options', 'skb_view_settings', 'kanban_boards_view_settings' );
     
-    add_submenu_page( null, 'Edit Kanban Board', '', 'manage_options', 'kanban_boards_edit', 'kanban_boards_edit_page' ); // Hidden submenu for editing
+    add_submenu_page( null, 'Edit Kanban Board', '', 'manage_options', 'kanban_boards_edit', 'skb_edit_board' ); // Hidden submenu for editing
 }
 add_action( 'admin_menu', 'kanban_boards_menu' );
 
@@ -114,6 +124,7 @@ function kanban_boards_list_page() {
 
 function kanban_boards_add_new_page() {
     // Display the form for adding a new Kanban Board
+    require_once(VIEWS_DIR . 'partials/header.php');
     require_once(VIEWS_DIR . 'new-kanban.php');
 }
 

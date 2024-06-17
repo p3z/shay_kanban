@@ -1,2 +1,2 @@
-# shay_kanban
-A simple plugin for bringing Kanban boards into WordPress
+# Shay Kanban
+A simple plugin for enabling the creation of kanban board workflows into WordPress

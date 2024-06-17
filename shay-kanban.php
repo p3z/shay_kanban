@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Shay Kanban
  * Description: A simple plugin to manage Kanban boards in WordPress.
- * Version: 1.04
+ * Version: 1.05
  * Author: Shay Pottle
  */
 

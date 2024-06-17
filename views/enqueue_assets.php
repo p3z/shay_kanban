@@ -35,7 +35,7 @@ function skb_enqueues() {
         wp_enqueue_script('material-dashboard', plugins_url('assets/js/material-dashboard.min.js?v=3.1.0', __FILE__ ), '1.0', true);
         // Also houses the label animation for videos, don't delete
       
-        wp_enqueue_script('pws_global', plugins_url('assets/global/js/pws_global.js', __FILE__ ), '1.0', true);
+        wp_enqueue_script('pws_global', plugins_url('assets/js/pws_global.js', __FILE__ ), '1.0', true);
         
         
     } // end isset($current_page)

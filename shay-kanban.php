@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Shay Kanban
  * Description: A simple plugin to manage Kanban boards in WordPress.
- * Version: 1.05
+ * Version: 1.06
  * Author: Shay Pottle
  */
 
@@ -14,7 +14,10 @@ define("MAIN_PLUGIN_DIR", plugin_dir_path(__FILE__) );
 define("VIEWS_DIR", MAIN_PLUGIN_DIR . 'views/');
 
 if ( is_admin() ) {
-    require_once(VIEWS_DIR . 'enqueue_assets.php');
+    require_once(plugin_dir_path(__FILE__) . "/utils.php");
+    require_once(plugin_dir_path(__FILE__) . '/views/enqueue_assets.php');
+    require_once(plugin_dir_path(__FILE__) . '/controllers/KanbanBoardController.php');
+    require_once(plugin_dir_path(__FILE__) . '/models/KanbanBoardModel.php');
 }
 
 

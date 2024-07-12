@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Title</title>
+    <link rel="stylesheet" href="../dist/jkanban.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Lato";
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      }
+
+      .success {
+        background: #00b961;
+      }
+
+      .info {
+        background: #2a92bf;
+      }
+
+      .warning {
+        background: #43e3d4;
+      }
+
+      .error {
+        background: #fb7d44;
+      }
+          
+      
+
+
+
+
+#pipeline-kanban {
+    margin-top: 5px auto;
+    /* border: 1px solid #fff; */
+    /*box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;*/
+    border-radius: 12px !important;
+    overflow-x: auto;
+    padding: 20px 0;
+    /*width: 2000px !important;*/
+}
+
+#pipeline-kanban .kanban-board{
+    border-radius: 12px !important;
+    min-height: 370px;
+    /* border: 2px solid gray; */
+}      
+
+.kanban-container{
+  margin: 50px auto;
+}
+
+.kanban-header-area{
+    color: #fff;
+    border-top-right-radius: 12px !important;
+    border-top-left-radius: 12px !important;
+}
+
+.kanban-item{
+    border-radius: 12px !important;    
+    /* cursor: pointer !important; */
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="pipeline-kanban"></div>
+    
+
+    <script src="../dist/jkanban.js"></script>
+    <script>
+
+// element: "#pipeline-kanban",
+//             gutter: "10px",
+//             widthBoard: "250px",
+//             dragBoards: false,
+//             itemHandleOptions:{
+//               enabled: false, // Show a drag handle
+//             },
+      var KanbanTest = new jKanban({
+        element: "#pipeline-kanban",
+        gutter: "10px",
+        widthBoard: "250px",
+        dragBoards: false,
+        itemHandleOptions:{
+          enabled: false,
+        },
+
+        
+        click: function(el) {
+          console.log("Trigger on all items click!");
+        },
+        context: function(el, e) {
+          console.log("Trigger on all items right-click!");
+        },
+        dropEl: function(el, target, source, sibling){
+          console.log(target.parentElement.getAttribute('data-id'));
+          console.log(el, target, source, sibling)
+        },
+        
+        boards: [
+          {
+            id: "_todo",
+            title: "In  progress",
+            class: "info,good, kanban-header-area",
+            dragTo: ["_working"],
+            item: [
+              {
+                id: "_test_delete",
+                title: "Chase up client for invoice #21597"
+                
+              },
+              {
+                title: "Complete user requirements (client #GA7)"                
+              },
+              {
+                title: "Reflections with team"                
+              }
+            ]
+          },
+          {
+            id: "_working",
+            title: "Awaiting response",
+            class: "warning, kanban-header-area",
+            item: [
+              {
+                title: "Pass to QA"
+              },
+              {
+                title: "Query with execs."
+              }
+            ]
+          },
+          {
+            id: "_done",
+            title: "Complete",
+            class: "success, kanban-header-area",
+            dragTo: ["_working"],
+            item: [
+              {
+                title: "Invoice #21610"
+              }
+            ]
+          }
+        ]
+      });
+
+ 
+
+    </script>
+  </body>
+</html>
